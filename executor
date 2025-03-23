@@ -1,0 +1,220 @@
+wait("0.2")
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local UserInputService = game:GetService("UserInputService")
+
+-- إنشاء الواجهات
+local ArceusGUI = Instance.new("ScreenGui")
+local ControlGUI = Instance.new("ScreenGui")
+local OpenButton = Instance.new("TextButton")
+
+-- ██████ إعدادات واجهة التحكم ██████
+ControlGUI.Name = "ControlPanel"
+ControlGUI.Parent = CoreGui
+ControlGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ControlGUI.ResetOnSpawn = false
+
+-- ██████ زر الفتح المتحرك ██████
+OpenButton.Name = "ControlButton"
+OpenButton.Size = UDim2.new(0.07, 0, 0.08, 0)
+OpenButton.Position = UDim2.new(0.92, 0, 0.02, 0)
+OpenButton.Text = "⭕"
+OpenButton.TextSize = 28
+OpenButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+OpenButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+OpenButton.Font = Enum.Font.GothamBold
+OpenButton.Active = true
+OpenButton.Draggable = true
+OpenButton.Parent = ControlGUI
+
+-- ██████ نظام سحب الزر ██████
+local dragging, dragInput, dragStart, startPos
+
+OpenButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = OpenButton.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+OpenButton.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        local delta = input.Position - dragStart
+        OpenButton.Position = UDim2.new(
+            startPos.X.Scale, 
+            startPos.X.Offset + delta.X, 
+            startPos.Y.Scale, 
+            startPos.Y.Offset + delta.Y
+        )
+    end
+end)
+
+-- ██████ الواجهة الرئيسية ██████
+ArceusGUI.Name = "ArceusX_NEO_V2"
+ArceusGUI.Parent = CoreGui
+ArceusGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ArceusGUI.ResetOnSpawn = false
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0.35, 0, 0.5, 0)
+MainFrame.Position = UDim2.new(0.3, 0, 0.25, 0)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.Draggable = true
+
+-- ██████ عناصر الواجهة الرئيسية ██████
+local CloseButton = Instance.new("TextButton")
+CloseButton.Name = "CloseBtn"
+CloseButton.Size = UDim2.new(0.06, 0, 0.07, 0)
+CloseButton.Position = UDim2.new(0.94, 0, 0.01, 0)
+CloseButton.Text = "×"
+CloseButton.TextColor3 = Color3.new(1, 0.3, 0.3)
+CloseButton.TextSize = 24
+CloseButton.BackgroundTransparency = 1
+
+local ScriptBox = Instance.new("TextBox")
+ScriptBox.Name = "ScriptEditor"
+ScriptBox.Size = UDim2.new(0.72, 0, 0.75, 0)
+ScriptBox.Position = UDim2.new(0.26, 0, 0.15, 0)
+ScriptBox.Text = "-- الصق السكربت هنا --"
+ScriptBox.TextXAlignment = Enum.TextXAlignment.Left
+ScriptBox.TextYAlignment = Enum.TextYAlignment.Top
+ScriptBox.TextWrapped = true
+ScriptBox.ClearTextOnFocus = false
+ScriptBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+ScriptBox.TextColor3 = Color3.new(0.8, 0.8, 0.8)
+ScriptBox.Font = Enum.Font.Code
+ScriptBox.PlaceholderColor3 = Color3.new(0.5, 0.5, 0.5)
+
+local ScriptList = Instance.new("ScrollingFrame")
+ScriptList.Name = "ScriptSelector"
+ScriptList.Size = UDim2.new(0.22, 0, 0.75, 0)
+ScriptList.Position = UDim2.new(0.02, 0, 0.15, 0)
+ScriptList.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+ScriptList.ScrollBarThickness = 5
+ScriptList.CanvasSize = UDim2.new(0, 0, 2, 0)
+
+local ExecuteBtn = Instance.new("TextButton")
+ExecuteBtn.Name = "ExecuteButton"
+ExecuteBtn.Size = UDim2.new(0.25, 0, 0.08, 0)
+ExecuteBtn.Position = UDim2.new(0.5, -50, 0.92, 0)
+ExecuteBtn.Text = "▶ تشغيل"
+ExecuteBtn.TextSize = 14
+ExecuteBtn.Font = Enum.Font.GothamBold
+ExecuteBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+ExecuteBtn.TextColor3 = Color3.new(1, 1, 1)
+
+-- ██████ نظام التبديل ██████
+local function toggleInterface()
+    ArceusGUI.Enabled = not ArceusGUI.Enabled
+    OpenButton.Text = ArceusGUI.Enabled and "✕" or "⭕"
+    OpenButton.BackgroundColor3 = ArceusGUI.Enabled and Color3.fromRGB(255, 60, 60) or Color3.fromRGB(30, 30, 30)
+end
+
+OpenButton.MouseButton1Click:Connect(toggleInterface)
+CloseButton.MouseButton1Click:Connect(toggleInterface)
+
+-- ██████ بقية المكونات ██████
+local exampleScripts = {
+    ["Arceus X"] = {
+        code = [[
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+        ]],
+        description = "Official Arceus X V3 Loader"
+    },
+    ["Delta V1"] = {
+        code = [[
+loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Delta-Executor-J-O-K-E-7664"))()
+        ]], -- السكربت الجديد
+        description = "Delta Executor Official Script",
+        locked = true
+    },
+    ["DMX Script"] = {
+        code = [[
+-- by hack_hub3/roblox\
+        ]],
+        description = "DMX Utility Script"
+    }
+}
+
+local function populateScriptList()
+    local yOffset = 0
+    local buttonHeight = 0.12
+    
+    for name, data in pairs(exampleScripts) do
+        local scriptButton = Instance.new("TextButton")
+        scriptButton.Name = name
+        scriptButton.Size = UDim2.new(0.9, 0, buttonHeight, 0)
+        scriptButton.Position = UDim2.new(0.05, 0, yOffset, 0)
+        scriptButton.Text = name
+        scriptButton.TextColor3 = Color3.new(0.9, 0.9, 0.9)
+        scriptButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+        scriptButton.Font = Enum.Font.GothamMedium
+        
+        scriptButton.MouseButton1Click:Connect(function()
+            ScriptBox.Text = data.code
+        end)
+        
+        scriptButton.Parent = ScriptList
+        yOffset += buttonHeight + 0.02
+    end
+    
+    ScriptList.CanvasSize = UDim2.new(0, 0, yOffset, 0)
+end
+
+local function safeExecute(code)
+    local fn, err = loadstring(code)
+    if not fn then
+        warn("خطأ في الترجمة: "..err)
+        return false
+    end
+    
+    local success, result = pcall(fn)
+    if not success then
+        warn("خطأ في التشغيل: "..result)
+        return false
+    end
+    return true
+end
+
+ExecuteBtn.MouseButton1Click:Connect(function()
+    local code = ScriptBox.Text
+    if code:match("%S") then
+        safeExecute(code)
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        if UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
+            ScriptList.CanvasPosition -= Vector2.new(0, input.Delta.Y * 2)
+        end
+    end
+end)
+
+-- ██████ تهيئة الواجهة ██████
+populateScriptList()
+MainFrame.Parent = ArceusGUI
+CloseButton.Parent = MainFrame
+ScriptBox.Parent = MainFrame
+ExecuteBtn.Parent = MainFrame
+ScriptList.Parent = MainFrame
+
+-- ██████ الإعدادات الأولية ██████
+ArceusGUI.Enabled = false
+ControlGUI.Enabled = true
+toggleInterface()

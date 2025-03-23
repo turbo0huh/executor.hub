@@ -18,7 +18,7 @@ ControlGUI.ResetOnSpawn = false
 OpenButton.Name = "ControlButton"
 OpenButton.Size = UDim2.new(0.07, 0, 0.08, 0)
 OpenButton.Position = UDim2.new(0.92, 0, 0.02, 0)
-OpenButton.Text = "⭕"
+OpenButton.Text = "OPEN"
 OpenButton.TextSize = 28
 OpenButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 OpenButton.TextColor3 = Color3.fromRGB(0, 255, 0)
@@ -121,7 +121,7 @@ ExecuteBtn.TextColor3 = Color3.new(1, 1, 1)
 -- ██████ نظام التبديل ██████
 local function toggleInterface()
     ArceusGUI.Enabled = not ArceusGUI.Enabled
-    OpenButton.Text = ArceusGUI.Enabled and "✕" or "⭕"
+    OpenButton.Text = ArceusGUI.Enabled and "✕" or "⚡"
     OpenButton.BackgroundColor3 = ArceusGUI.Enabled and Color3.fromRGB(255, 60, 60) or Color3.fromRGB(30, 30, 30)
 end
 
@@ -145,7 +145,7 @@ loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Delta-Execu
     },
     ["DMX Script"] = {
         code = [[
--- by hack_hub3/roblox\
+-- by hack_hub3
         ]],
         description = "DMX Utility Script"
     }

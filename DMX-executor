@@ -200,24 +200,24 @@ loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Delta-Execu
         ]],
         description = "Delta Executor Official Script",
         locked = true
-    },
-    ["DMX Executor"] = {
+    }    },
+    ["Fly GUI V3"] = {
         code = [[
--- by hack_hub3
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fly-v3-13879"))()
         ]],
-        description = "DMX Utility Script"
+        description = "Fly GUI V3 Script"
 },
 ["tiger hub"] = {
     code = [[
 loadstring(game:HttpGet("https://raw.githubusercontent.com/balintTheDevX/Tiger-X-V3/main/Tiger%20X%20V3.5%20Fixed"))()
         ]],
         description = "more executor or exploits"
-    },
-    ["Fly GUI V3"] = {
+},
+    ["DMX Executor"] = {
         code = [[
-loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fly-v3-13879"))()
+-- by hack_hub3
         ]],
-        description = "Fly GUI V3 Script"
+        description = "DMX Utility Script" 
     }
 }
 

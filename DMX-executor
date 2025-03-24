@@ -3,18 +3,15 @@ local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
 local UserInputService = game:GetService("UserInputService")
 
--- إنشاء الواجهات
 local ArceusGUI = Instance.new("ScreenGui")
 local ControlGUI = Instance.new("ScreenGui")
 local OpenButton = Instance.new("TextButton")
 
--- ██████ إعدادات واجهة التحكم ██████
 ControlGUI.Name = "ControlPanel"
 ControlGUI.Parent = CoreGui
 ControlGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ControlGUI.ResetOnSpawn = false
 
--- ██████ زر الفتح المتحرك ██████
 OpenButton.Name = "ControlButton"
 OpenButton.Size = UDim2.new(0.07, 0, 0.08, 0)
 OpenButton.Position = UDim2.new(0.92, 0, 0.02, 0)
@@ -27,7 +24,6 @@ OpenButton.Active = true
 OpenButton.Draggable = true
 OpenButton.Parent = ControlGUI
 
--- ██████ نظام سحب الزر ██████
 local dragging, dragInput, dragStart, startPos
 
 OpenButton.InputBegan:Connect(function(input)
@@ -62,7 +58,6 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
--- ██████ الواجهة الرئيسية ██████
 ArceusGUI.Name = "ArceusX_NEO_V2"
 ArceusGUI.Parent = CoreGui
 ArceusGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -76,7 +71,6 @@ MainFrame.BorderSizePixel = 0
 MainFrame.Active = true
 MainFrame.Draggable = true
 
--- ██████ علامة مائية ██████
 local Watermark = Instance.new("TextLabel")
 Watermark.Name = "Watermark"
 Watermark.Size = UDim2.new(0.3, 0, 0.05, 0)
@@ -89,7 +83,6 @@ Watermark.TextSize = 14
 Watermark.TextXAlignment = Enum.TextXAlignment.Left
 Watermark.Parent = MainFrame
 
--- ██████ عناصر الواجهة الرئيسية ██████
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseBtn"
 CloseButton.Size = UDim2.new(0.06, 0, 0.07, 0)
@@ -112,7 +105,7 @@ ScriptBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 ScriptBox.TextColor3 = Color3.new(0.8, 0.8, 0.8)
 ScriptBox.Font = Enum.Font.Code
 ScriptBox.PlaceholderColor3 = Color3.new(0.5, 0.5, 0.5)
-ScriptBox.MultiLine = true -- تمكين الكتابة العمودية
+ScriptBox.MultiLine = true
 
 local ScriptList = Instance.new("ScrollingFrame")
 ScriptList.Name = "ScriptSelector"
@@ -132,14 +125,13 @@ ExecuteBtn.Font = Enum.Font.GothamBold
 ExecuteBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
 ExecuteBtn.TextColor3 = Color3.new(1, 1, 1)
 
--- ██████ نافذة التأكيد ██████
 local ConfirmFrame = Instance.new("Frame")
 ConfirmFrame.Size = UDim2.new(0.3, 0, 0.15, 0)
-ConfirmFrame.Position = UDim2.new(0.35, 0, 0.05, 0) -- تم تغيير الموضع إلى الأعلى
+ConfirmFrame.Position = UDim2.new(0.35, 0, 0.05, 0)
 ConfirmFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 ConfirmFrame.BorderSizePixel = 0
 ConfirmFrame.Visible = false
-ConfirmFrame.ZIndex = 10 -- جعلها تظهر أمام العناصر الأخرى
+ConfirmFrame.ZIndex = 10
 
 local ConfirmText = Instance.new("TextLabel")
 ConfirmText.Size = UDim2.new(0.8, 0, 0.5, 0)
@@ -149,7 +141,7 @@ ConfirmText.TextColor3 = Color3.new(1, 1, 1)
 ConfirmText.BackgroundTransparency = 1
 ConfirmText.Font = Enum.Font.GothamMedium
 ConfirmText.TextSize = 16
-ConfirmText.ZIndex = 11 -- جعل النص يظهر أمام الإطار
+ConfirmText.ZIndex = 11
 
 local ConfirmYes = Instance.new("TextButton")
 ConfirmYes.Size = UDim2.new(0.3, 0, 0.3, 0)
@@ -159,7 +151,7 @@ ConfirmYes.TextColor3 = Color3.new(1, 1, 1)
 ConfirmYes.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
 ConfirmYes.Font = Enum.Font.GothamBold
 ConfirmYes.TextSize = 14
-ConfirmYes.ZIndex = 11 -- جعل الزر يظهر أمام الإطار
+ConfirmYes.ZIndex = 11
 
 local ConfirmNo = Instance.new("TextButton")
 ConfirmNo.Size = UDim2.new(0.3, 0, 0.3, 0)
@@ -169,14 +161,13 @@ ConfirmNo.TextColor3 = Color3.new(1, 1, 1)
 ConfirmNo.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
 ConfirmNo.Font = Enum.Font.GothamBold
 ConfirmNo.TextSize = 14
-ConfirmNo.ZIndex = 11 -- جعل الزر يظهر أمام الإطار
+ConfirmNo.ZIndex = 11
 
 ConfirmYes.Parent = ConfirmFrame
 ConfirmNo.Parent = ConfirmFrame
 ConfirmText.Parent = ConfirmFrame
 ConfirmFrame.Parent = ArceusGUI
 
--- ██████ نظام التبديل ██████
 local function toggleInterface()
     ArceusGUI.Enabled = not ArceusGUI.Enabled
     OpenButton.Text = ArceusGUI.Enabled and "✕" or "⚡"
@@ -186,7 +177,6 @@ end
 OpenButton.MouseButton1Click:Connect(toggleInterface)
 CloseButton.MouseButton1Click:Connect(toggleInterface)
 
--- ██████ بقية المكونات ██████
 local exampleScripts = {
     ["Arceus X"] = {
         code = [[
@@ -197,11 +187,11 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-wor
     ["Delta V1"] = {
         code = [[
 loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Delta-Executor-J-O-K-E-7664"))()
-        ]], -- السكربت الجديد
+        ]],
         description = "Delta Executor Official Script",
         locked = true
     },
-    ["DMX Script"] = {
+    ["DMX Executor"] = {
         code = [[
 -- by hack_hub3
 
@@ -215,6 +205,8 @@ loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fly-v3-1387
         description = "Fly GUI V3 Script"
     }
 }
+
+local selectedButton = nil
 
 local function populateScriptList()
     local yOffset = 0
@@ -231,6 +223,11 @@ local function populateScriptList()
         scriptButton.Font = Enum.Font.GothamMedium
         
         scriptButton.MouseButton1Click:Connect(function()
+            if selectedButton then
+                selectedButton.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+            end
+            selectedButton = scriptButton
+            scriptButton.BackgroundColor3 = Color3.fromRGB(0, 191, 255)
             ScriptBox.Text = data.code
         end)
         
@@ -242,23 +239,15 @@ local function populateScriptList()
 end
 
 local function safeExecute(code)
-    local fn, err = loadstring(code)
-    if not fn then
-        warn("خطأ في الترجمة: "..err)
-        return false
+    local fn = loadstring(code)
+    if fn then
+        fn()
     end
-    
-    local success, result = pcall(fn)
-    if not success then
-        warn("خطأ في التشغيل: "..result)
-        return false
-    end
-    return true
 end
 
 ExecuteBtn.MouseButton1Click:Connect(function()
     ConfirmFrame.Visible = true
-    MainFrame.Active = false -- تعطيل التفاعل مع الواجهة الرئيسية
+    MainFrame.Active = false
 end)
 
 ConfirmYes.MouseButton1Click:Connect(function()
@@ -267,12 +256,12 @@ ConfirmYes.MouseButton1Click:Connect(function()
         safeExecute(code)
     end
     ConfirmFrame.Visible = false
-    MainFrame.Active = true -- إعادة تفعيل التفاعل مع الواجهة الرئيسية
+    MainFrame.Active = true
 end)
 
 ConfirmNo.MouseButton1Click:Connect(function()
     ConfirmFrame.Visible = false
-    MainFrame.Active = true -- إعادة تفعيل التفاعل مع الواجهة الرئيسية
+    MainFrame.Active = true
 end)
 
 UserInputService.InputChanged:Connect(function(input)
@@ -283,7 +272,6 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
--- ██████ تهيئة الواجهة ██████
 populateScriptList()
 MainFrame.Parent = ArceusGUI
 CloseButton.Parent = MainFrame
@@ -291,7 +279,6 @@ ScriptBox.Parent = MainFrame
 ExecuteBtn.Parent = MainFrame
 ScriptList.Parent = MainFrame
 
--- ██████ الإعدادات الأولية ██████
 ArceusGUI.Enabled = false
 ControlGUI.Enabled = true
 toggleInterface()

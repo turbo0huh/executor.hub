@@ -125,16 +125,6 @@ ScriptList.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 ScriptList.ScrollBarThickness = 5
 ScriptList.CanvasSize = UDim2.new(0, 0, 2, 0)
 
-local ClearBtn = Instance.new("TextButton")
-ClearBtn.Name = "ClearButton"
-ClearBtn.Size = UDim2.new(0.25, 0, 0.08, 0)
-ClearBtn.Position = UDim2.new(0.25, -50, 0.92, 0) -- تم تعديل الموضع ليكون بجانب زر التشغيل
-ClearBtn.Text = "🗑️ مسح"
-ClearBtn.TextSize = 14
-ClearBtn.Font = Enum.Font.GothamBold
-ClearBtn.BackgroundColor3 = Color3.fromRGB(215, 60, 0) -- لون برتقالي/أحمر
-ClearBtn.TextColor3 = Color3.new(1, 1, 1)
-
 local ExecuteBtn = Instance.new("TextButton")
 ExecuteBtn.Name = "ExecuteButton"
 ExecuteBtn.Size = UDim2.new(0.25, 0, 0.08, 0)
@@ -144,6 +134,21 @@ ExecuteBtn.TextSize = 14
 ExecuteBtn.Font = Enum.Font.GothamBold
 ExecuteBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
 ExecuteBtn.TextColor3 = Color3.new(1, 1, 1)
+
+-- زر المسح الجديد
+local ClearBtn = Instance.new("TextButton")
+ClearBtn.Name = "ClearButton"
+ClearBtn.Size = UDim2.new(0.25, 0, 0.08, 0)
+ClearBtn.Position = UDim2.new(0.25, -50, 0.92, 0)
+ClearBtn.Text = "🗑️ مسح"
+ClearBtn.TextSize = 14
+ClearBtn.Font = Enum.Font.GothamBold
+ClearBtn.BackgroundColor3 = Color3.fromRGB(215, 60, 0)
+ClearBtn.TextColor3 = Color3.new(1, 1, 1)
+
+ClearBtn.MouseButton1Click:Connect(function()
+    ScriptBox.Text = ""
+end)
 
 local ConfirmFrame = Instance.new("Frame")
 ConfirmFrame.Size = UDim2.new(0.3, 0, 0.15, 0)

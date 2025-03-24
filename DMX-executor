@@ -76,6 +76,19 @@ MainFrame.BorderSizePixel = 0
 MainFrame.Active = true
 MainFrame.Draggable = true
 
+-- ██████ علامة مائية ██████
+local Watermark = Instance.new("TextLabel")
+Watermark.Name = "Watermark"
+Watermark.Size = UDim2.new(0.3, 0, 0.05, 0)
+Watermark.Position = UDim2.new(0.02, 0, 0.02, 0)
+Watermark.Text = "DMX executor -- by hack_hub3"
+Watermark.TextColor3 = Color3.new(0.8, 0.8, 0.8)
+Watermark.BackgroundTransparency = 1
+Watermark.Font = Enum.Font.GothamMedium
+Watermark.TextSize = 14
+Watermark.TextXAlignment = Enum.TextXAlignment.Left
+Watermark.Parent = MainFrame
+
 -- ██████ عناصر الواجهة الرئيسية ██████
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseBtn"
@@ -99,6 +112,7 @@ ScriptBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 ScriptBox.TextColor3 = Color3.new(0.8, 0.8, 0.8)
 ScriptBox.Font = Enum.Font.Code
 ScriptBox.PlaceholderColor3 = Color3.new(0.5, 0.5, 0.5)
+ScriptBox.MultiLine = true -- تمكين الكتابة العمودية
 
 local ScriptList = Instance.new("ScrollingFrame")
 ScriptList.Name = "ScriptSelector"
@@ -117,6 +131,50 @@ ExecuteBtn.TextSize = 14
 ExecuteBtn.Font = Enum.Font.GothamBold
 ExecuteBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
 ExecuteBtn.TextColor3 = Color3.new(1, 1, 1)
+
+-- ██████ نافذة التأكيد ██████
+local ConfirmFrame = Instance.new("Frame")
+ConfirmFrame.Size = UDim2.new(0.3, 0, 0.15, 0)
+ConfirmFrame.Position = UDim2.new(0.35, 0, 0.05, 0) -- تم تغيير الموضع إلى الأعلى
+ConfirmFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+ConfirmFrame.BorderSizePixel = 0
+ConfirmFrame.Visible = false
+ConfirmFrame.ZIndex = 10 -- جعلها تظهر أمام العناصر الأخرى
+
+local ConfirmText = Instance.new("TextLabel")
+ConfirmText.Size = UDim2.new(0.8, 0, 0.5, 0)
+ConfirmText.Position = UDim2.new(0.1, 0, 0.1, 0)
+ConfirmText.Text = "هل أنت متأكد من تشغيل السكربت؟"
+ConfirmText.TextColor3 = Color3.new(1, 1, 1)
+ConfirmText.BackgroundTransparency = 1
+ConfirmText.Font = Enum.Font.GothamMedium
+ConfirmText.TextSize = 16
+ConfirmText.ZIndex = 11 -- جعل النص يظهر أمام الإطار
+
+local ConfirmYes = Instance.new("TextButton")
+ConfirmYes.Size = UDim2.new(0.3, 0, 0.3, 0)
+ConfirmYes.Position = UDim2.new(0.1, 0, 0.6, 0)
+ConfirmYes.Text = "تأكيد"
+ConfirmYes.TextColor3 = Color3.new(1, 1, 1)
+ConfirmYes.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+ConfirmYes.Font = Enum.Font.GothamBold
+ConfirmYes.TextSize = 14
+ConfirmYes.ZIndex = 11 -- جعل الزر يظهر أمام الإطار
+
+local ConfirmNo = Instance.new("TextButton")
+ConfirmNo.Size = UDim2.new(0.3, 0, 0.3, 0)
+ConfirmNo.Position = UDim2.new(0.6, 0, 0.6, 0)
+ConfirmNo.Text = "إلغاء"
+ConfirmNo.TextColor3 = Color3.new(1, 1, 1)
+ConfirmNo.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
+ConfirmNo.Font = Enum.Font.GothamBold
+ConfirmNo.TextSize = 14
+ConfirmNo.ZIndex = 11 -- جعل الزر يظهر أمام الإطار
+
+ConfirmYes.Parent = ConfirmFrame
+ConfirmNo.Parent = ConfirmFrame
+ConfirmText.Parent = ConfirmFrame
+ConfirmFrame.Parent = ArceusGUI
 
 -- ██████ نظام التبديل ██████
 local function toggleInterface()
@@ -149,6 +207,12 @@ loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Delta-Execu
 
         ]],
         description = "DMX Utility Script"
+    },
+    ["Fly GUI V3"] = {
+        code = [[
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fly-v3-13879"))()
+        ]],
+        description = "Fly GUI V3 Script"
     }
 }
 
@@ -193,10 +257,22 @@ local function safeExecute(code)
 end
 
 ExecuteBtn.MouseButton1Click:Connect(function()
+    ConfirmFrame.Visible = true
+    MainFrame.Active = false -- تعطيل التفاعل مع الواجهة الرئيسية
+end)
+
+ConfirmYes.MouseButton1Click:Connect(function()
     local code = ScriptBox.Text
     if code:match("%S") then
         safeExecute(code)
     end
+    ConfirmFrame.Visible = false
+    MainFrame.Active = true -- إعادة تفعيل التفاعل مع الواجهة الرئيسية
+end)
+
+ConfirmNo.MouseButton1Click:Connect(function()
+    ConfirmFrame.Visible = false
+    MainFrame.Active = true -- إعادة تفعيل التفاعل مع الواجهة الرئيسية
 end)
 
 UserInputService.InputChanged:Connect(function(input)

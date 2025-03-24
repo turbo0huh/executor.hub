@@ -96,7 +96,7 @@ local ScriptBox = Instance.new("TextBox")
 ScriptBox.Name = "ScriptEditor"
 ScriptBox.Size = UDim2.new(0.72, 0, 0.75, 0)
 ScriptBox.Position = UDim2.new(0.26, 0, 0.15, 0)
-ScriptBox.Text = "-- الصق السكربت هنا --"
+ScriptBox.Text = "-- roblox(hack_hub3/tiktok/dddd3m) --"
 ScriptBox.TextXAlignment = Enum.TextXAlignment.Left
 ScriptBox.TextYAlignment = Enum.TextYAlignment.Top
 ScriptBox.TextWrapped = true
@@ -194,7 +194,6 @@ loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Delta-Execu
     ["DMX Executor"] = {
         code = [[
 -- by hack_hub3
-
         ]],
         description = "DMX Utility Script"
     },

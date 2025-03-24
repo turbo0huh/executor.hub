@@ -92,6 +92,16 @@ CloseButton.TextColor3 = Color3.new(1, 0.3, 0.3)
 CloseButton.TextSize = 24
 CloseButton.BackgroundTransparency = 1
 
+local ResizeButton = Instance.new("TextButton")
+ResizeButton.Name = "ResizeBtn"
+ResizeButton.Size = UDim2.new(0.06, 0, 0.07, 0)
+ResizeButton.Position = UDim2.new(0.88, 0, 0.01, 0)
+ResizeButton.Text = "o"
+ResizeButton.TextColor3 = Color3.new(1, 1, 1)
+ResizeButton.TextSize = 24
+ResizeButton.BackgroundTransparency = 1
+ResizeButton.Parent = MainFrame
+
 local ScriptBox = Instance.new("TextBox")
 ScriptBox.Name = "ScriptEditor"
 ScriptBox.Size = UDim2.new(0.72, 0, 0.75, 0)
@@ -263,11 +273,45 @@ ConfirmNo.MouseButton1Click:Connect(function()
     MainFrame.Active = true
 end)
 
+local resizing = false
+local resizeStart = Vector2.new(0, 0)
+local startSize = UDim2.new(0, 0, 0, 0)
+
+MainFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        local mousePos = UserInputService:GetMouseLocation()
+        local framePos = MainFrame.AbsolutePosition
+        local frameSize = MainFrame.AbsoluteSize
+        
+        if mousePos.X > framePos.X + frameSize.X - 10 and mousePos.Y > framePos.Y + frameSize.Y - 10 then
+            resizing = true
+            resizeStart = mousePos
+            startSize = MainFrame.Size
+        end
+    end
+end)
+
+MainFrame.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        resizing = false
+    end
+end)
+
 UserInputService.InputChanged:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseMovement then
-        if UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
-            ScriptList.CanvasPosition -= Vector2.new(0, input.Delta.Y * 2)
+        if resizing then
+            local mousePos = UserInputService:GetMouseLocation()
+            local delta = mousePos - resizeStart
+            MainFrame.Size = UDim2.new(startSize.X.Scale, startSize.X.Offset + delta.X, startSize.Y.Scale, startSize.Y.Offset + delta.Y)
         end
+    end
+end)
+
+ResizeButton.MouseButton1Click:Connect(function()
+    if MainFrame.Size == UDim2.new(0.35, 0, 0.5, 0) then
+        MainFrame.Size = UDim2.new(0.5, 0, 0.7, 0)
+    else
+        MainFrame.Size = UDim2.new(0.35, 0, 0.5, 0)
     end
 end)
 

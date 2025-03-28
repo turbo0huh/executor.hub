@@ -1,0 +1,276 @@
+-- fe kill all 
+-- السكربت يعمل على المشغل الخارجي (Synapse, Krnl, إلخ)
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+local mouse = player:GetMouse()
+
+-- إنشاء واجهة التحكم الرئيسية
+local ControlGUI = Instance.new("ScreenGui")
+ControlGUI.Name = "ControlGUI"
+ControlGUI.Parent = game:GetService("CoreGui")
+
+-- زر فتح/إغلاق الواجهة
+local OpenButton = Instance.new("TextButton")
+OpenButton.Name = "OpenButton"
+OpenButton.Size = UDim2.new(0, 50, 0, 50)
+OpenButton.Position = UDim2.new(0, 20, 0.5, -25)
+OpenButton.Text = "☰"
+OpenButton.TextSize = 20
+OpenButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+OpenButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+OpenButton.Font = Enum.Font.GothamBold
+OpenButton.Active = true
+OpenButton.Draggable = true
+OpenButton.Parent = ControlGUI
+
+-- إنشاء واجهة القتل الرئيسية
+local KillGUI = Instance.new("ScreenGui")
+KillGUI.Name = "KillAllGUI"
+KillGUI.Parent = game:GetService("CoreGui")
+KillGUI.Enabled = false
+
+-- الإطار الرئيسي (قابل للسحب)
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 250, 0, 150)
+MainFrame.Position = UDim2.new(0.5, -125, 0.5, -75)
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.Selectable = true
+MainFrame.Parent = KillGUI
+
+-- شريط العنوان (للسحب)
+local TitleBar = Instance.new("Frame")
+TitleBar.Size = UDim2.new(1, 0, 0, 30)
+TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+TitleBar.BorderSizePixel = 0
+TitleBar.Parent = MainFrame
+
+local TitleLabel = Instance.new("TextLabel")
+TitleLabel.Size = UDim2.new(1, -60, 1, 0)
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Text = "أدوات المدير المتقدمة"
+TitleLabel.TextColor3 = Color3.new(1, 1, 1)
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.TextSize = 14
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+TitleLabel.Parent = TitleBar
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 30, 0, 30)
+CloseButton.Position = UDim2.new(1, -30, 0, 0)
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.new(1, 0.3, 0.3)
+CloseButton.BackgroundTransparency = 1
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.TextSize = 18
+CloseButton.Parent = TitleBar
+
+-- زر القتل الأساسي
+local KillButton = Instance.new("TextButton")
+KillButton.Size = UDim2.new(0.9, 0, 0, 40)
+KillButton.Position = UDim2.new(0.05, 0, 0.2, 0)
+KillButton.Text = "⚔️ قتل الجميع ⚔️"
+KillButton.Font = Enum.Font.GothamBold
+KillButton.TextSize = 16
+KillButton.TextColor3 = Color3.new(1, 1, 1)
+KillButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+KillButton.Parent = MainFrame
+
+-- زر إضافي (مثال)
+local ExtraButton = Instance.new("TextButton")
+ExtraButton.Size = UDim2.new(0.9, 0, 0, 40)
+ExtraButton.Position = UDim2.new(0.05, 0, 0.6, 0)
+ExtraButton.Text = "إخفاء الواجهة"
+ExtraButton.Font = Enum.Font.GothamBold
+ExtraButton.TextSize = 16
+ExtraButton.TextColor3 = Color3.new(1, 1, 1)
+ExtraButton.BackgroundColor3 = Color3.fromRGB(80, 80, 200)
+ExtraButton.Parent = MainFrame
+
+-- متغيرات السحب للواجهة الرئيسية
+local draggingMain = false
+local dragStartMain, frameStartMain
+
+-- متغيرات السحب لزر الفتح
+local draggingOpen = false
+local dragStartOpen, buttonStartOpen
+
+-- وظائف السحب لزر الفتح
+OpenButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        draggingOpen = true
+        dragStartOpen = input.Position
+        buttonStartOpen = OpenButton.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                draggingOpen = false
+            end
+        end)
+    end
+end)
+
+-- وظائف السحب للواجهة الرئيسية
+TitleBar.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        draggingMain = true
+        dragStartMain = input.Position
+        frameStartMain = MainFrame.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                draggingMain = false
+            end
+        end)
+    end
+end)
+
+-- تحديث موقع زر الفتح أثناء السحب
+UserInputService.InputChanged:Connect(function(input)
+    if draggingOpen and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local delta = input.Position - dragStartOpen
+        OpenButton.Position = UDim2.new(
+            buttonStartOpen.X.Scale, 
+            buttonStartOpen.X.Offset + delta.X, 
+            buttonStartOpen.Y.Scale, 
+            buttonStartOpen.Y.Offset + delta.Y
+        )
+    end
+end)
+
+-- تحديث موقع الواجهة الرئيسية أثناء السحب
+UserInputService.InputChanged:Connect(function(input)
+    if draggingMain and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local delta = input.Position - dragStartMain
+        MainFrame.Position = UDim2.new(
+            frameStartMain.X.Scale, 
+            frameStartMain.X.Offset + delta.X, 
+            frameStartMain.Y.Scale, 
+            frameStartMain.Y.Offset + delta.Y
+        )
+    end
+end)
+
+-- تأثيرات زر الفتح
+OpenButton.MouseEnter:Connect(function()
+    OpenButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+end)
+
+OpenButton.MouseLeave:Connect(function()
+    OpenButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+end)
+
+-- تأثيرات زر القتل
+KillButton.MouseEnter:Connect(function()
+    KillButton.BackgroundColor3 = Color3.fromRGB(220, 70, 70)
+end)
+
+KillButton.MouseLeave:Connect(function()
+    KillButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+end)
+
+-- تأثيرات الزر الإضافي
+ExtraButton.MouseEnter:Connect(function()
+    ExtraButton.BackgroundColor3 = Color3.fromRGB(100, 100, 220)
+end)
+
+ExtraButton.MouseLeave:Connect(function()
+    ExtraButton.BackgroundColor3 = Color3.fromRGB(80, 80, 200)
+end)
+
+-- فتح/إغلاق الواجهة الرئيسية
+OpenButton.MouseButton1Click:Connect(function()
+    KillGUI.Enabled = not KillGUI.Enabled
+    OpenButton.Text = KillGUI.Enabled and "✕" or "☰"
+    OpenButton.BackgroundColor3 = KillGUI.Enabled and Color3.fromRGB(40, 40, 40) or Color3.fromRGB(30, 30, 30)
+end)
+
+-- إغلاق الواجهة
+CloseButton.MouseButton1Click:Connect(function()
+    KillGUI.Enabled = false
+    OpenButton.Text = "☰"
+    OpenButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+end)
+
+-- زر إخفاء الواجهة
+ExtraButton.MouseButton1Click:Connect(function()
+    ControlGUI.Enabled = not ControlGUI.Enabled
+end)
+
+-- وظيفة قتل الجميع
+local function killAllPlayers()
+    -- التأثير على السيرفر (يجب أن يكون لديك حق الوصول)
+    for _, v in ipairs(Players:GetPlayers()) do
+        if v ~= player and v.Character then
+            local humanoid = v.Character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.Health = 0
+                
+                -- تأثيرات بصرية محلية
+                local rootPart = v.Character:FindFirstChild("HumanoidRootPart")
+                if rootPart then
+                    local explosion = Instance.new("Explosion")
+                    explosion.Position = rootPart.Position
+                    explosion.BlastRadius = 10
+                    explosion.BlastPressure = 0
+                    explosion.Visible = false
+                    explosion.Parent = workspace
+                    
+                    local blood = Instance.new("ParticleEmitter")
+                    blood.Texture = "rbxassetid://243664672"
+                    blood.LightEmission = 1
+                    blood.Size = NumberSequence.new(0.5)
+                    blood.Lifetime = NumberRange.new(1)
+                    blood.Speed = NumberRange.new(5)
+                    blood.EmissionDirection = Enum.NormalId.Top
+                    blood.Parent = rootPart
+                    blood:Emit(30)
+                    game:GetService("Debris"):AddItem(blood, 1)
+                end
+            end
+        end
+    end
+    
+    -- رسالة محلية
+    if player.Character then
+        local head = player.Character:FindFirstChild("Head")
+        if head then
+            local chat = Instance.new("StringValue")
+            chat.Name = "Chatted"
+            chat.Value = "لقد قتلت الجميع!"
+            chat.Parent = head
+        end
+    end
+end
+
+-- تفعيل القتل عند النقر
+KillButton.MouseButton1Click:Connect(function()
+    KillButton.Text = "جاري التنفيذ..."
+    KillButton.BackgroundColor3 = Color3.fromRGB(50, 200, 50)
+    
+    -- تأثير صوتي
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://9115948332"
+    sound.Parent = KillButton
+    sound:Play()
+    
+    -- تنفيذ القتل
+    killAllPlayers()
+    
+    -- إعادة تعيين الزر بعد ثانيتين
+    wait(2)
+    KillButton.Text = "⚔️ قتل الجميع ⚔️"
+    KillButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+end)
+
+-- مفتاح اختصار لفتح/إغلاق الواجهة (F6)
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if input.KeyCode == Enum.KeyCode.F6 and not gameProcessed then
+        KillGUI.Enabled = not KillGUI.Enabled
+        OpenButton.Text = KillGUI.Enabled and "✕" or "☰"
+        OpenButton.BackgroundColor3 = KillGUI.Enabled and Color3.fromRGB(40, 40, 40) or Color3.fromRGB(30, 30, 30)
+    end
+end)

@@ -216,6 +216,11 @@ loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Delta-Execu
         description = "Delta Executor Official Script",
         locked = true
     },
+    ["Ghost hub"]  = {
+       code = [[
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-X-Ghost-Hub-X-7595"))()
+        ]],
+    },
     ["Fly GUI V3"] = {
         code = [[
 loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fly-v3-13879"))()

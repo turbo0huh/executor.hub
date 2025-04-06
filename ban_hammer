@@ -1,0 +1,288 @@
+-- Credits to: Intrusive
+-- Version: 1.02
+local ScreenGui = Instance.new("ScreenGui")
+local OpenFrame = Instance.new("Frame")
+local Open = Instance.new("TextButton")
+local Main = Instance.new("Frame")
+local TopFrame = Instance.new("Frame")
+local BottomFrame = Instance.new("Frame")
+local MadeBy = Instance.new("TextLabel")
+local MyAdmin = Instance.new("TextButton")
+local RedwoodBT = Instance.new("TextButton")
+local OPprisonlife = Instance.new("TextButton")
+local BanHammar = Instance.new("TextButton")
+local BadvaarFucker = Instance.new("TextButton")
+local WaterParkAdmin = Instance.new("TextButton")
+local GrabKnifeV2 = Instance.new("TextButton")
+local GrabKnifeV3 = Instance.new("TextButton")
+local GrabKnifeV4 = Instance.new("TextButton")
+local RoMoney = Instance.new("TextButton")
+local Nothing = Instance.new("TextButton")
+local RobloxHighschoolKick = Instance.new("TextButton")
+local VanPlayer = Instance.new("TextButton")
+local PrisonGrabKnife = Instance.new("TextButton")
+local Bullshit = Instance.new("TextButton")
+local Close = Instance.new("TextButton")
+-- Properties:
+ScreenGui.Parent = game.CoreGui
+
+OpenFrame.Name = "OpenFrame"
+OpenFrame.Parent = ScreenGui
+OpenFrame.BackgroundColor3 = Color3.new(0.105882, 0.105882, 0.105882)
+OpenFrame.Position = UDim2.new(0, 0, 0.351111114, 0)
+OpenFrame.Size = UDim2.new(0, 100, 0, 37)
+
+Open.Name = "Open"
+Open.Parent = OpenFrame
+Open.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+Open.Position = UDim2.new(0.0499999262, 0, 0.162162155, 0)
+Open.Size = UDim2.new(0, 89, 0, 24)
+Open.Font = Enum.Font.SourceSans
+Open.Text = "Open"
+Open.TextColor3 = Color3.new(0, 0, 0)
+Open.TextScaled = true
+Open.TextSize = 14
+Open.TextWrapped = true
+Open.Visible = true
+Open.MouseButton1Down:connect(function()
+	Main.Visible = true
+end)
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.new(0.0980392, 0.0980392, 0.0980392)
+Main.Position = UDim2.new(0.213631734, 0, 0.0911111087, 0)
+Main.Size = UDim2.new(0, 562, 0, 367)
+Main.Visible = false
+
+TopFrame.Name = "TopFrame"
+TopFrame.Parent = Main
+TopFrame.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+TopFrame.Size = UDim2.new(0, 562, 0, 20)
+
+BottomFrame.Name = "BottomFrame"
+BottomFrame.Parent = Main
+BottomFrame.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+BottomFrame.Position = UDim2.new(0, 0, 0.967302442, 0)
+BottomFrame.Size = UDim2.new(0, 562, 0, 20)
+
+MadeBy.Name = "MadeBy"
+MadeBy.Parent = Main
+MadeBy.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+MadeBy.BorderSizePixel = 0
+MadeBy.Position = UDim2.new(0.322064042, 0, 0, 0)
+MadeBy.Size = UDim2.new(0, 200, 0, 20)
+MadeBy.Font = Enum.Font.SourceSans
+MadeBy.Text = "Made by: Intrusive"
+MadeBy.TextColor3 = Color3.new(0, 0, 0)
+MadeBy.TextScaled = true
+MadeBy.TextSize = 14
+MadeBy.TextWrapped = true
+
+MyAdmin.Name = "MyAdmin"
+MyAdmin.Parent = Main
+MyAdmin.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+MyAdmin.Position = UDim2.new(0.0213523135, 0, 0.108991824, 0)
+MyAdmin.Size = UDim2.new(0, 146, 0, 35)
+MyAdmin.Font = Enum.Font.SourceSans
+MyAdmin.Text = "Intrusives ADMIN"
+MyAdmin.TextColor3 = Color3.new(0, 0, 0)
+MyAdmin.TextSize = 14
+MyAdmin.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/iL4NRDux", true))()
+end)
+
+RedwoodBT.Name = "RedwoodBT"
+RedwoodBT.Parent = Main
+RedwoodBT.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+RedwoodBT.Position = UDim2.new(0.0213523135, 0, 0.280653954, 0)
+RedwoodBT.Size = UDim2.new(0, 146, 0, 35)
+RedwoodBT.Font = Enum.Font.SourceSans
+RedwoodBT.Text = "Redwood Btools (fe)"
+RedwoodBT.TextColor3 = Color3.new(0, 0, 0)
+RedwoodBT.TextSize = 14
+RedwoodBT.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/ij2cFnYd", true))()
+end)
+
+OPprisonlife.Name = "OPprisonlife"
+OPprisonlife.Parent = Main
+OPprisonlife.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+OPprisonlife.Position = UDim2.new(0.0213523135, 0, 0.452316076, 0)
+OPprisonlife.Size = UDim2.new(0, 146, 0, 35)
+OPprisonlife.Font = Enum.Font.SourceSans
+OPprisonlife.Text = "Op prison life script (fe)"
+OPprisonlife.TextColor3 = Color3.new(0, 0, 0)
+OPprisonlife.TextSize = 14
+OPprisonlife.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/1u3Duykf", true))()
+end)
+
+BanHammar.Name = "BanHammar"
+BanHammar.Parent = Main
+BanHammar.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+BanHammar.Position = UDim2.new(0.0213523135, 0, 0.629427791, 0)
+BanHammar.Size = UDim2.new(0, 146, 0, 35)
+BanHammar.Font = Enum.Font.SourceSans
+BanHammar.Text = "Band hammar (fe)"
+BanHammar.TextColor3 = Color3.new(0, 0, 0)
+BanHammar.TextSize = 14
+BanHammar.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/h9NvY2PD", true))()
+end)
+
+BadvaarFucker.Name = "BadvaarFucker"
+BadvaarFucker.Parent = Main
+BadvaarFucker.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+BadvaarFucker.Position = UDim2.new(0.0213523135, 0, 0.811989069, 0)
+BadvaarFucker.Size = UDim2.new(0, 146, 0, 35)
+BadvaarFucker.Font = Enum.Font.SourceSans
+BadvaarFucker.Text = "Badvaar Fucker (fe)"
+BadvaarFucker.TextColor3 = Color3.new(0, 0, 0)
+BadvaarFucker.TextSize = 14
+BadvaarFucker.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/GYetLEjP", true))()
+end)
+
+WaterParkAdmin.Name = "WaterParkAdmin"
+WaterParkAdmin.Parent = Main
+WaterParkAdmin.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+WaterParkAdmin.Position = UDim2.new(0.350533813, 0, 0.108991802, 0)
+WaterParkAdmin.Size = UDim2.new(0, 146, 0, 35)
+WaterParkAdmin.Font = Enum.Font.SourceSans
+WaterParkAdmin.Text = "Robloxian Waterpark admin"
+WaterParkAdmin.TextColor3 = Color3.new(0, 0, 0)
+WaterParkAdmin.TextSize = 14
+WaterParkAdmin.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/aQKVScxs", true))()
+end)
+
+GrabKnifeV2.Name = "GrabKnifeV2"
+GrabKnifeV2.Parent = Main
+GrabKnifeV2.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+GrabKnifeV2.Position = UDim2.new(0.350533813, 0, 0.280653924, 0)
+GrabKnifeV2.Size = UDim2.new(0, 146, 0, 35)
+GrabKnifeV2.Font = Enum.Font.SourceSans
+GrabKnifeV2.Text = "GrabKnife V2 (fe)"
+GrabKnifeV2.TextColor3 = Color3.new(0, 0, 0)
+GrabKnifeV2.TextSize = 14
+GrabKnifeV2.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/Bw7aWTBL", true))()
+end)
+
+GrabKnifeV3.Name = "GrabKnifeV3"
+GrabKnifeV3.Parent = Main
+GrabKnifeV3.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+GrabKnifeV3.Position = UDim2.new(0.350533813, 0, 0.452316046, 0)
+GrabKnifeV3.Size = UDim2.new(0, 146, 0, 35)
+GrabKnifeV3.Font = Enum.Font.SourceSans
+GrabKnifeV3.Text = "GrabKnife V3 (fe)"
+GrabKnifeV3.TextColor3 = Color3.new(0, 0, 0)
+GrabKnifeV3.TextSize = 14
+GrabKnifeV3.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/vXgWessT", true))()
+end)
+
+GrabKnifeV4.Name = "GrabKnifeV4"
+GrabKnifeV4.Parent = Main
+GrabKnifeV4.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+GrabKnifeV4.Position = UDim2.new(0.350533813, 0, 0.629427791, 0)
+GrabKnifeV4.Size = UDim2.new(0, 146, 0, 35)
+GrabKnifeV4.Font = Enum.Font.SourceSans
+GrabKnifeV4.Text = "GrabKnife V4 (fe)"
+GrabKnifeV4.TextColor3 = Color3.new(0, 0, 0)
+GrabKnifeV4.TextSize = 14
+GrabKnifeV4.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/m3J58VDx", true))()
+end)
+
+RoMoney.Name = "RoMoney"
+RoMoney.Parent = Main
+RoMoney.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+RoMoney.Position = UDim2.new(0.350533813, 0, 0.811989069, 0)
+RoMoney.Size = UDim2.new(0, 146, 0, 35)
+RoMoney.Font = Enum.Font.SourceSans
+RoMoney.Text = "Rocitizens Inf money"
+RoMoney.TextColor3 = Color3.new(0, 0, 0)
+RoMoney.TextSize = 14
+RoMoney.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/HcQwTDut", true))()
+end)
+
+Nothing.Name = "Nothing"
+Nothing.Parent = Main
+Nothing.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+Nothing.Position = UDim2.new(0.701067626, 0, 0.811989069, 0)
+Nothing.Size = UDim2.new(0, 146, 0, 35)
+Nothing.Font = Enum.Font.SourceSans
+Nothing.Text = "Nothing"
+Nothing.TextColor3 = Color3.new(0, 0, 0)
+Nothing.TextSize = 14
+Nothing.MouseButton1Down:connect(function()
+	loadstring("\103\97\109\101\46\80\108\97\121\101\114\115\46\76\111\99\97\108\80\108\97\121\101\114\58\75\105\99\107\40\34\76\77\65\79\32\89\79\85\32\65\67\84\85\65\76\76\89\32\70\69\76\76\32\70\79\82\32\84\72\65\84\34\41\10")()
+end)
+
+RobloxHighschoolKick.Name = "RobloxHighschoolKick"
+RobloxHighschoolKick.Parent = Main
+RobloxHighschoolKick.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+RobloxHighschoolKick.Position = UDim2.new(0.701067626, 0, 0.629427791, 0)
+RobloxHighschoolKick.Size = UDim2.new(0, 146, 0, 35)
+RobloxHighschoolKick.Font = Enum.Font.SourceSans
+RobloxHighschoolKick.Text = "Roblox Highschool kick plr "
+RobloxHighschoolKick.TextColor3 = Color3.new(0, 0, 0)
+RobloxHighschoolKick.TextSize = 14
+RobloxHighschoolKick.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/v8D1s0WA", true))()
+end)
+
+VanPlayer.Name = "VanPlayer"
+VanPlayer.Parent = Main
+VanPlayer.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+VanPlayer.Position = UDim2.new(0.701067626, 0, 0.449591279, 0)
+VanPlayer.Size = UDim2.new(0, 146, 0, 35)
+VanPlayer.Font = Enum.Font.SourceSans
+VanPlayer.Text = "Van Player Gui (fe)"
+VanPlayer.TextColor3 = Color3.new(0, 0, 0)
+VanPlayer.TextSize = 14
+VanPlayer.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/3qzshxby", true))()
+end)
+
+PrisonGrabKnife.Name = "PrisonGrabKnife"
+PrisonGrabKnife.Parent = Main
+PrisonGrabKnife.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+PrisonGrabKnife.Position = UDim2.new(0.701067626, 0, 0.280653954, 0)
+PrisonGrabKnife.Size = UDim2.new(0, 146, 0, 35)
+PrisonGrabKnife.Font = Enum.Font.SourceSans
+PrisonGrabKnife.Text = "Prison likfe GrabKnife (fe)"
+PrisonGrabKnife.TextColor3 = Color3.new(0, 0, 0)
+PrisonGrabKnife.TextSize = 14
+PrisonGrabKnife.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/E7VxXfF8", true))()
+end)
+
+Bullshit.Name = "Bullshit"
+Bullshit.Parent = Main
+Bullshit.BackgroundColor3 = Color3.new(1, 0.333333, 0)
+Bullshit.Position = UDim2.new(0.701067626, 0, 0.106267035, 0)
+Bullshit.Size = UDim2.new(0, 146, 0, 35)
+Bullshit.Font = Enum.Font.SourceSans
+Bullshit.Text = "Bullshit V1 (fe)"
+Bullshit.TextColor3 = Color3.new(0, 0, 0)
+Bullshit.TextSize = 14
+Bullshit.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/BdBcr0zs", true))()
+end)
+
+Close.Name = "Close"
+Close.Parent = Main
+Close.BackgroundColor3 = Color3.new(1, 0, 0)
+Close.Position = UDim2.new(0.932384312, 0, 1.03942703e-08, 0)
+Close.Size = UDim2.new(0, 38, 0, 19)
+Close.Font = Enum.Font.SourceSans
+Close.Text = "X"
+Close.TextColor3 = Color3.new(0, 0, 0)
+Close.TextSize = 14
+Close.MouseButton1Down:connect(function()
+	Main.Visible = false
+end)

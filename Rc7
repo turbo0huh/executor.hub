@@ -4,7 +4,7 @@
 -- Instances:
 game:GetService("StarterGui"):SetCore("SendNotification",{ 	Title = "Rc7 by hack_hub3",  	
 
-Text = "password: ",
+Text = "password:",
 
 })
 
@@ -88,7 +88,7 @@ submit.Text = ""
 submit.TextColor3 = Color3.fromRGB(0, 0, 0)
 submit.TextSize = 14.000
 submit.MouseButton1Down:connect(function()
-	if pass.Text == "Rc7Cracked" then
+	if pass.Text == "" then
 		passpage.Visible = false
 		mainpage.Visible = true
 	else
